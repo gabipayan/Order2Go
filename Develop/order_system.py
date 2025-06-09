@@ -2,20 +2,6 @@ def place_order(menu):
     """
     Displays a restaurant menu, asks customers for their order, then returns
     their receipt and total price.
-
-    Parameters:
-    menu (dictionary): A nested dictionary containing the menu items and their 
-                       prices, using the following format:
-                        {
-                            "Food category": {
-                                "Meal": price
-                            }
-                        }
-
-    Returns:
-    order (list): A list of dictionaries containing the menu item name, price,
-                  and quantity ordered.
-    order_total (float): The total price of the order.
     """
     # Set up order list. Order list will store a list of dictionaries for
     # menu item name, item price, and quantity ordered
@@ -26,31 +12,32 @@ def place_order(menu):
 
     # Launch the store and present a greeting to the customer
     print("Welcome to the Generic Take Out Restaurant.")
+print("What would you like to order?")  # ✅ para test_order_loop
 
     # TODO: Create a continuous while loop so customers can order multiple items
-while True: # para pedir múltiples ítems
-       
+    while True:  # para pedir múltiples ítems
+
         # TODO: Ask the customer what they want to order
         i = 1
         print_menu_heading()
 
         # TODO: Loop through the menu dictionary
         for food_category, options in menu.items():
-        # TODO: Extract the food category and the options for each category
+            # TODO: Extract the food category and the options for each category
             for meal, price in options.items():
-         
-            # TODO: Loop through the options for each food category
-            # TODO: Extract the meal and the price for each option
+                # TODO: Loop through the options for each food category
+                # TODO: Extract the meal and the price for each option
                 # Print the menu item number, food category, meal, and price
                 # TODO: Only if you used different variable names
                 # TODO: Update the variable names in the following function
-
                 print_menu_line(i, food_category, meal, price)
+
+                # Update the menu selection number
                 i += 1
 
         # TODO: Ask customer to input menu item number
         menu_selection = input("Type menu number: ")
-       
+
         # TODO: Update the order list using the update_order function
         # TODO: Send the order list, menu selection, and menu items as arguments
         # Actualizar el pedido con lo que haya elegido el cliente
@@ -71,7 +58,7 @@ while True: # para pedir múltiples ítems
             # TODO: The total price for each item should multiply the price by quantity
             # Calcular el precio total usando list comprehension
             prices_list = [item["Price"] * item["Quantity"] for item in order]
-         
+
             # TODO: Create an order_total from the prices list using sum()
             # TODO: Round the prices to 2 decimal places.
             order_total = round(sum(prices_list), 2)
@@ -82,9 +69,6 @@ while True: # para pedir múltiples ítems
 
     # TODO: Return the order list and the order total
     return order, order_total
-
-
-
         # Create a variable for the menu item number
         i = 1
 
@@ -280,12 +264,8 @@ def get_menu_items_dict(menu):
     for food_category, options in menu.items():
         # Loop through the options for each food category
         for meal, price in options.items():
-            # Store the menu item number, item name and price in the menu_items
-            menu_items[i] = {
-                "Item name": food_category + " - " + meal,
-                "Price": price
-            }
-            i += 1
+            print_menu_line(i, food_category, meal, price)
+        i += 1
 
     return menu_items
 
